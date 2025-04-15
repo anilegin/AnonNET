@@ -11,8 +11,8 @@ from deepface import DeepFace
 
 MODEL_NAME = "SG161222/Realistic_Vision_V5.0_noVAE"
 # MODEL_NAME = "SG161222/Realistic_Vision_V6.0_B1_noVAE"
-MODEL_CACHE = "cache"
-VAE_CACHE = "vae-cache"
+MODEL_CACHE = "./AnonHead/models/cache_model"
+VAE_CACHE = "./AnonHead/models/cache_vae"
 
 ################################################################################
 # Anonimization
@@ -29,19 +29,24 @@ class Predictor:
         
         controlnet_inpaint = ControlNetModel.from_pretrained(
             "lllyasviel/control_v11p_sd15_inpaint",
-            torch_dtype=torch.float16
+            torch_dtype=torch.float16,
+            cache_dir=MODEL_CACHE
         )
         lineart_controlnet = ControlNetModel.from_pretrained(
             "ControlNet-1-1-preview/control_v11p_sd15_lineart",
-            torch_dtype=torch.float16
+            torch_dtype=torch.float16,
+            cache_dir=MODEL_CACHE
         )
         openpose_controlnet = ControlNetModel.from_pretrained(
             "lllyasviel/control_v11p_sd15_openpose",
-            torch_dtype=torch.float16
+            torch_dtype=torch.float16,
+            cache_dir=MODEL_CACHE
         )
 
-        self.lineart_processor = LineartDetector.from_pretrained("lllyasviel/Annotators")
-        self.openpose_detector = OpenposeDetector.from_pretrained("lllyasviel/Annotators")
+        self.lineart_processor = LineartDetector.from_pretrained("lllyasviel/Annotators",
+            cache_dir=MODEL_CACHE)
+        self.openpose_detector = OpenposeDetector.from_pretrained("lllyasviel/Annotators",
+            cache_dir=MODEL_CACHE)
 
         controlnets = [controlnet_inpaint, lineart_controlnet, openpose_controlnet]
 
@@ -54,7 +59,8 @@ class Predictor:
             MODEL_NAME,
             controlnet=controlnets,
             torch_dtype=torch.float16,
-            vae=vae
+            vae=vae,
+            cache_dir=MODEL_CACHE
         )
         
         
