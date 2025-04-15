@@ -31,7 +31,7 @@ This repository provides the implementation of AnonNET as described in our paper
 ```bash
 git clone https://github.com/anilegin/AnonNET.git
 cd AnonNET
-python3 -m venv AnonNET
+python3.9 -m venv AnonNET
 source AnonNET/bin/activate  # On Windows use: AnonNET\Scripts\activate
 pip install -r requirements.txt
 ```
