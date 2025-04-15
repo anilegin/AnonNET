@@ -2,7 +2,7 @@
 
 
 
-**AnonNET** is a multi-stage face anonymization pipeline designed to preserve non-identifying facial attributes (e.g., age, gender, race, and expression) while ensuring robust identity obfuscation in both static images and talking-head videos. It combines attribute-conditioned diffusion-based inpainting with landmark-free motion synthesis, making it suitable for real-world and privacy-critical video anonymization applications.
+**AnonNET** is a multi-stage face anonymization pipeline designed to preserve non-identifying facial attributes (e.g., age, gender, race, and expression) while ensuring robust identity obfuscation in both images and talking-head videos. It combines attribute-conditioned diffusion-based inpainting with landmark-free motion synthesis, making it suitable for real-world and privacy-critical video anonymization applications.
 
 This repository provides the implementation of AnonNET as described in our paper:
 
@@ -31,6 +31,8 @@ This repository provides the implementation of AnonNET as described in our paper
 ```bash
 git clone https://github.com/anilegin/AnonNET.git
 cd AnonNET
+python3 -m venv AnonNET
+source AnonNET/bin/activate  # On Windows use: AnonNET\Scripts\activate
 pip install -r requirements.txt
 ```
 
