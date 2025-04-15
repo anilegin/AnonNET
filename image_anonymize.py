@@ -23,7 +23,7 @@ def main(args):
         segment = Segment(load_det=False, load_face=False) 
     
     
-            
+    print(f"{args.segment} segmentation started!")
     #Segment the face
     outputs = segment.retinaface_detect_and_annotate(
         img=args.image,
@@ -34,6 +34,8 @@ def main(args):
     
     if len(outputs) == 0:
         raise ValueError("No Person detected! Anonymization aborted!")
+    
+    print("Segmentation completed!")
     
     image_pil = Image.open(args.image)
     

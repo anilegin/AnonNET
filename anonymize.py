@@ -53,7 +53,7 @@ def main(args):
             continue
             
         #Segment the face
-        
+        print(f"{args.segment} segmentation started!")
         outputs = segment.retinaface_detect_and_annotate(
             img=im_path,
             margin=0.8,
@@ -72,7 +72,7 @@ def main(args):
             print(f"Scene {i}: more than 1 face detected. Skipping!")
             continue
         
-        
+        print("Segmentation completed!")
         
         # Assuming filename is like: ff_{sid}_{seed}.png
         seed = basename.split('_')[-1]
