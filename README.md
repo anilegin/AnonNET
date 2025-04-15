@@ -23,8 +23,6 @@ This repository provides the implementation of AnonNET as described in our paper
 
 ---
 
----
-
 ## 🛠 Installation
 
 > Requires: **Python 3.9** and **CUDA +12.1** (GPU required for inpainting and motion synthesis)
