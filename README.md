@@ -3,7 +3,7 @@
 <p align="center">
     <a href='LICENSE'><img src='https://img.shields.io/badge/license-MIT-yellow'></a> 
     <a href=''><img src='https://img.shields.io/badge/arXiv-AnonNET-red'></a>
-    <a href='https://anilegin.github.io/AnonNET/'><img src='https://img.shields.io/badge/Project-AnonNET-green'></a>
+    <a href='https://anilegin.github.io/AnonNET-project/'><img src='https://img.shields.io/badge/Project-AnonNET-green'></a>
     <!--<a href='https://huggingface.co/spaces/anilegin/AnonNET'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue'></a>-->
     <a href="https://github.com/anilegin/AnonNET"><img src="https://img.shields.io/github/stars/anilegin/AnonNET"></a>
 <br>
