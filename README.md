@@ -45,7 +45,7 @@ This repository provides the implementation of AnonNET as described in our paper
 
 ---
 
-## 🕵️ Anonymization Samples
+## Anonymization Samples
 
 ### 🖼️ Image Anonymization
 
