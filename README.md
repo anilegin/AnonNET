@@ -25,7 +25,7 @@ This repository provides the implementation of AnonNET as described in our paper
 
 ## 🛠 Installation
 
-> Requires: **Python 3.9** and **CUDA +12.1** (GPU required for inpainting and motion synthesis)
+> Requires: **Python 3.9** and **CUDA >= 12.1** (GPU required for inpainting and motion synthesis)
 
 
 ```bash
@@ -41,9 +41,9 @@ pip install -r requirements.txt
 Manually download or cache models for:
 
 `vox.pt` – Required for LIA motion synthesis  
-  Download from the [vox.pt]([(https://github.com/anilegin/AnonNET/releases/download/v1.0.0/vox.pt)](https://github.com/anilegin/AnonNET/releases/download/v1.0.0/vox.pt)) page and place under `Generation/pretrained_weights`.
+  Download from the [Releases](https://github.com/anilegin/AnonNET/releases/download/v1.0.0/vox.pt) page and place under `Generation/pretrained_weights`.
 
-Other model weights (Stable Diffusion, RetinaFace, etc.) are expected to be stored or downloaded automatically when the script is initalized.
+Other model weights (Stable Diffusion, RetinaFace, etc.) are expected to be downloaded and stored automatically when the script is initalized.
 
 ---
 
