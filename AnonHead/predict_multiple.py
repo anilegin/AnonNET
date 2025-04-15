@@ -204,7 +204,8 @@ class Predictor:
             if confidence > highest_confidence:
                 highest_confidence = confidence
                 if confidence >= 0.80:
-                    dominant_emotion = emotion.lower()
+                    #dominant_emotion = emotion.lower()
+                    dominant_emotion = f"mildly {emotion.lower()}"
                 elif confidence > 0.50:
                     dominant_emotion = f"mildly {emotion.lower()}"
                 else:

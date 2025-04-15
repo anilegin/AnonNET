@@ -51,8 +51,8 @@ def main(
 
         motion_lp(args_lp)
 
-        final_scene_out = os.path.join(processed_folder, f"{file_name}_source_{scene_id}--{file_name}_scene_{scene_number}_id_{scene_id}.mp4")
-        final_scene_out_concat = os.path.join(processed_folder, f"{file_name}_source_{scene_id}--{file_name}_scene_{scene_number}_id_{scene_id}_concat.mp4")
+        final_scene_out = os.path.join(processed_folder, f"{file_name}_source_{scene_number}--{file_name}_scene_{scene_number}_id_{scene_id}.mp4")
+        final_scene_out_concat = os.path.join(processed_folder, f"{file_name}_source_{scene_number}--{file_name}_scene_{scene_number}_id_{scene_id}_concat.mp4")
         if os.path.isfile(final_scene_out):
             processed_segments.append(final_scene_out)
         else:

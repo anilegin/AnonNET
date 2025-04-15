@@ -138,7 +138,7 @@ def clip_creation(args):
                 if result["verified"]:
                     used_seed = seed
                     print(f"Scene {i}: Face matches unique face with seed {seed}.")
-                    frame_path = os.path.join(temp_source_dir, f"{filename}_ff_{sid}_{used_seed}.png")
+                    frame_path = os.path.join(temp_source_dir, f"{file_name}_ff_{sid}_{used_seed}.png")
                     cv2.imwrite(frame_path, frame)
                     scene_video_paths.append((i, sid, scene_vid_path, frame_path, extracted_faces))  
                     break
@@ -153,7 +153,7 @@ def clip_creation(args):
                 used_seed = new_seed
                 unique_faces[used_seed] = (face_np,attributes)
                 print(f"Scene {i}: New unique face added with seed {used_seed}.")
-                frame_path = os.path.join(temp_source_dir, f"{filename}_ff_{sid}_{used_seed}.png")
+                frame_path = os.path.join(temp_source_dir, f"{file_name}_ff_{sid}_{used_seed}.png")
                 cv2.imwrite(frame_path, frame)
                 scene_video_paths.append((i, sid, scene_vid_path, frame_path, extracted_faces))  
                 

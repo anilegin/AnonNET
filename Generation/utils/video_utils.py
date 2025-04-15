@@ -149,56 +149,104 @@ def extract_first_frame(video_path, output_image_path):
         cv2.imwrite(output_image_path, frame)
     cap.release()
     
-def create_concat_video(scene_video_path, source_image_path, final_merged_path, final_merged_concat_path):
-    # Load the source image
+
+def create_concat_video(original_path, anonymized_path, source_image_path, output_path):
+
+    """Load all frames from both videos into memory, then create
+    a side-by-side video with:
+       left : frames from the original video
+       mid  : the static source image
+       right: frames from the anonymized video
+
+    Raises:
+        FileNotFoundError: if any video or the source image fails to load
+    """
+
+    # ---------------------------
+    # 1) Read all frames from original
+    # ---------------------------
+    cap_orig = cv2.VideoCapture(original_path)
+    if not cap_orig.isOpened():
+        raise FileNotFoundError(f"Could not open original video: {original_path}")
+
+    fps_orig = cap_orig.get(cv2.CAP_PROP_FPS)
+    frames_orig = []
+    while True:
+        ret, frame = cap_orig.read()
+        if not ret:
+            break
+        frames_orig.append(frame)
+    cap_orig.release()
+
+    # ---------------------------
+    # 2) Read all frames from anonymized
+    # ---------------------------
+    cap_anon = cv2.VideoCapture(anonymized_path)
+    if not cap_anon.isOpened():
+        raise FileNotFoundError(f"Could not open anonymized video: {anonymized_path}")
+
+    fps_anon = cap_anon.get(cv2.CAP_PROP_FPS)
+    frames_anon = []
+    while True:
+        ret, frame = cap_anon.read()
+        if not ret:
+            break
+        frames_anon.append(frame)
+    cap_anon.release()
+
+    # ---------------------------
+    # 3) Verify frames & read the source image
+    # ---------------------------
+    # Here we assume they have the same # frames
+    # if they're different, we can clamp to min if you prefer
+    if len(frames_orig) != len(frames_anon):
+        print(f"[WARN] Mismatch in frame counts: "
+              f"original={len(frames_orig)}, anonymized={len(frames_anon)}. "
+              f"Will stop at min.")
+    frame_count = min(len(frames_orig), len(frames_anon))
+
     source_img = cv2.imread(source_image_path)
     if source_img is None:
-        print(f"[ERROR] Could not load source image: {source_image_path}")
-        return
+        raise FileNotFoundError(f"Could not load source image: {source_image_path}")
 
-    # Open original and anonymized videos
-    cap_orig = cv2.VideoCapture(scene_video_path)
-    cap_anon = cv2.VideoCapture(final_merged_path)
+    # Use the original video size for output
+    height, width = frames_orig[0].shape[:2]
 
-    if not cap_orig.isOpened():
-        print(f"[ERROR] Could not open original video: {scene_video_path}")
-        return
-    if not cap_anon.isOpened():
-        print(f"[ERROR] Could not open anonymized video: {final_merged_path}")
-        return
+    # We'll use the original video fps (or pick the min if you prefer)
+    final_fps = fps_orig
+    if final_fps == 0 or np.isnan(final_fps):
+        final_fps = 25.0  # fallback
 
-    # Get resolution and fps from original video
-    width = int(cap_orig.get(cv2.CAP_PROP_FRAME_WIDTH))
-    height = int(cap_orig.get(cv2.CAP_PROP_FRAME_HEIGHT))
-    fps = cap_orig.get(cv2.CAP_PROP_FPS)
-
-    # Resize the source image to match the video frame height
+    # resize source image to match the original video height
     source_img_resized = cv2.resize(source_img, (height, height))
 
-    # Prepare output video writer
-    concat_width = width * 2 + height  # original | source | anonymized
-    out = cv2.VideoWriter(final_merged_concat_path, cv2.VideoWriter_fourcc(*'mp4v'), fps, (concat_width, height))
+    concat_width = width * 2 + height  # original | source_image | anonymized
 
-    while True:
-        ret_orig, frame_orig = cap_orig.read()
-        ret_anon, frame_anon = cap_anon.read()
+    # make sure output path folder exists
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
-        if not ret_orig or not ret_anon:
-            break
+    # create writer
+    fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+    out = cv2.VideoWriter(output_path, fourcc, final_fps, (concat_width, height))
 
-        # Resize video frames
-        frame_orig_resized = cv2.resize(frame_orig, (width, height))
-        frame_anon_resized = cv2.resize(frame_anon, (width, height))
+    # ---------------------------
+    # 4) Write out all frames
+    # ---------------------------
+    for i in range(frame_count):
+        frame_o = frames_orig[i]
+        frame_a = frames_anon[i]
 
-        # Concatenate frames: original | source image | anonymized
-        concat_frame = np.concatenate((frame_orig_resized, source_img_resized, frame_anon_resized), axis=1)
+        # resize frames to be consistent
+        frame_o = cv2.resize(frame_o, (width, height))
+        frame_a = cv2.resize(frame_a, (width, height))
+
+        # concat: original | source_image | anonymized
+        concat_frame = np.concatenate((frame_o, source_img_resized, frame_a), axis=1)
         out.write(concat_frame)
 
-    # Release everything
-    cap_orig.release()
-    cap_anon.release()
     out.release()
-    print(f"[INFO] Saved side-by-side video to {final_merged_concat_path}")
+    print(f"[INFO] Done! Side-by-side video saved to: {output_path}")
+
     
     
 

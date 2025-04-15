@@ -26,8 +26,9 @@ def main(args):
         scene_paths, attributes = clip_creation(args)
         
     except Exception as e:
-        print(f"[ERROR] Failed to load model weights from {model_path}")
+        print(f"[ERROR] Failed to create clips --> {e}!")
         traceback.print_exc()
+        sys.exit()
         
     if len(scene_paths) == 0:
         print("No suitable scene found!")
@@ -125,7 +126,8 @@ def main(args):
     if args.motion == 'lia':
         motion_lia(scenes = scenes_info,
                    file_name = file_name,
-                   save_folder = args.save_folder)
+                   save_folder = args.save_folder,
+                   original= args.driving_path)
         
     else:
         

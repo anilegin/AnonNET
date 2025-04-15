@@ -109,6 +109,7 @@ def init_lia():
 
 def main(
     scenes,
+    original,
     file_name = 'final',
     save_folder = './results',
     ):
@@ -146,6 +147,6 @@ def main(
     final_merged_concat = os.path.join(save_folder, f"{file_name}_output_lia_concat.mp4")     
     vid_target_recon = torch.cat(vid_target_recon, dim=2)
     save_video(vid_target_recon, final_merged, fps)
-    create_concat_video(scene_video_path,source_image,final_merged,final_merged_concat)
+    create_concat_video(original, final_merged, source_image, final_merged_concat)
     print(f"Saving video to: {final_merged}")
         
