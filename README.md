@@ -158,3 +158,10 @@ For questions or feedback, please contact: [anilegin@gmail.com](mailto:anilegin@
 ## 📃 License
 
 This repository is released under the MIT License.
+
+The code of InsightFace is released under the MIT License.
+The models of InsightFace are for non-commercial research purposes only.
+
+If you want to use the AnonNET project for commercial purposes, you 
+should remove and replace InsightFace’s detection models to fully comply with 
+the MIT license.
