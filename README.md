@@ -11,11 +11,11 @@
 </p>
 
 <p align="center">
-  <a href="https://anilegin.com" target="_blank">Anil Egin</a><sup>1</sup>, 
+  <a href="https://anilegin.com" target="_blank">Anil Egin</a><sup>1,2</sup>, 
   <a href="https://www.andreatangherloni.com" target="_blank">Andrea Tangherloni</a><sup>2</sup>, 
-  <a href="https://www-sop.inria.fr/members/Antitza.Dantcheva/" target="_blank">Antitza Dantcheva</a><sup>2</sup>
+  <a href="https://www-sop.inria.fr/members/Antitza.Dantcheva/" target="_blank">Antitza Dantcheva</a><sup>1</sup>
   <br>
-  Inria Méditerranée, Bocconi University
+  <sup>1</sup>Inria Méditerranée, <sup>2</sup>Bocconi University
 </p>
 
 <p align="center">
