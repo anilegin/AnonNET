@@ -29,6 +29,7 @@
 This repository provides the implementation of AnonNET as described in our paper:
 
 📄 **Now You See Me, Now You Don’t: A Unified Framework for Expression-Consistent Anonymization in Talking Head Videos**  
+🗣️ Oral Presentation at the IEEE International Conference on Computer Vision (ICCV) 2025, Workshop on Computer Vision for Biometrics, Identity & Behaviour (CV4BIOM), Hawaii, USA.
  
 ---
 
