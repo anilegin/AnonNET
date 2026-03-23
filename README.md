@@ -102,6 +102,27 @@ pip install -r requirements.txt
 
 Manually download or cache models for:
 
+LivePortrait - Required for motion synthesis
+Download into Generation/pretrained_weights
+
+```bash
+pip install -U "huggingface_hub[cli]"
+huggingface-cli download KlingTeam/LivePortrait --local-dir Generation/pretrained_weights --exclude "*.git*" "README.md" "docs"
+```
+
+If HuggingFace is blocked, use mirror:
+
+```bash
+pip install -U "huggingface_hub[cli]"
+# Linux/macOS
+export HF_ENDPOINT=https://hf-mirror.com
+# Windows PowerShell
+# $env:HF_ENDPOINT="https://hf-mirror.com"
+huggingface-cli download KlingTeam/LivePortrait --local-dir Generation/pretrained_weights --exclude "*.git*" "README.md" "docs"
+```
+
+LIA:
+
 `vox.pt` – Required for LIA motion synthesis  
   Download from the [Releases](https://github.com/anilegin/AnonNET/releases/download/v1.0.0/vox.pt) page and place under `Generation/pretrained_weights`.
 
