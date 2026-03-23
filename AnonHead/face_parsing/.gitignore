@@ -3,6 +3,10 @@
 *.pt
 *.ckpt
 
+!AnonHead/
+!AnonHead/face_parsing/
+!AnonHead/face_parsing/weights/
+!AnonHead/face_parsing/weights/resnet18.pt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

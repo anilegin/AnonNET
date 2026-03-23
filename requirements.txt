@@ -15,8 +15,11 @@ PyYAML==6.0.1
 rich==13.7.1
 scikit-image==0.24.0
 scipy==1.13.1
+--extra-index-url https://download.pytorch.org/whl/cu118
 torch==2.0.1
 torchvision==0.15.2
+torchaudio==2.0.2
+--extra-index-url https://pypi.org/simple
 diffusers==0.19.0
 transformers==4.38.0
 safetensors==0.5.3
