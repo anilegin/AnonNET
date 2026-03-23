@@ -82,6 +82,9 @@ Here are video anonymization examples (Original → Anonymized):
 ## 🛠 Installation
 
 > Requires: **Python 3.9** and **CUDA >= 12.1** (GPU required for inpainting and motion synthesis)
+> [!Note]
+> Make sure your system has [`git`](https://git-scm.com/), and [`FFmpeg`](https://ffmpeg.org/download.html) installed.
+
 
 
 ```bash
