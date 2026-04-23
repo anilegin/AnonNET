@@ -70,7 +70,7 @@ class Predictor:
         self.pipe = pipe.to("cuda")
         self.pipe.enable_model_cpu_offload()
 
-        # 5) (Optional) enable xFormers memory-efficient attention
+        # (Optional) enable xFormers memory-efficient attention
         try:
             pipe.enable_xformers_memory_efficient_attention()
             print("[Predictor.setup()] xFormers memory-efficient attention enabled.")
